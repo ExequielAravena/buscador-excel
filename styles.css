@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f6f8;
+  color: #222;
+}
+
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+h1 {
+  margin: 0 0 16px 0;
+  font-size: 2rem;
+}
+
+.panel {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+#archivoExcel,
+#busqueda {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.archivo-info {
+  margin-top: 8px;
+  color: #555;
+  word-break: break-word;
+}
+
+.contador {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.tabla-contenedor {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+table {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #d9d9d9;
+  padding: 10px 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background: #eceff3;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+td.numero {
+  text-align: right;
+  white-space: nowrap;
+}
+
+td.codigo,
+td.bodega {
+  white-space: nowrap;
+}
+
+td.producto {
+  min-width: 380px;
+}
+
+button.copiar-btn {
+  background: #6d28d9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+button.copiar-btn:active {
+  transform: scale(0.98);
+}
+
+.sin-datos {
+  text-align: center;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  #archivoExcel,
+  #busqueda {
+    font-size: 16px;
+  }
+
+  th, td {
+    padding: 8px 6px;
+  }
+}

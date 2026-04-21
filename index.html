@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Buscador de Productos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#4f46e5">
+</head>
+<body>
+  <div class="app" id="appRoot">
+    <h1>Buscador de Productos</h1>
+
+    <div class="panel">
+      <label for="archivoExcel" class="label">Seleccionar archivo Excel</label>
+      <input
+        type="file"
+        id="archivoExcel"
+        accept=".xlsx,.xls,.xlsm"
+        onchange="manejarArchivoDirecto(event)"
+      >
+      <div id="nombreArchivo" class="archivo-info">Ningún archivo seleccionado</div>
+      <div id="resumenArchivo" class="archivo-resumen"></div>
+    </div>
+
+    <div class="panel">
+      <label for="busqueda" class="label">Buscar código o producto</label>
+
+      <div class="busqueda-fila">
+        <input
+          type="text"
+          id="busqueda"
+          placeholder="Escriba aquí..."
+          oninput="renderizarBusquedaDirecta()"
+        >
+        <button id="btnBuscar" type="button" class="copiar-btn" onclick="renderizarBusquedaDirecta()">
+          Buscar
+        </button>
+        <button id="btnLimpiar" type="button" class="copiar-btn secundario" onclick="limpiarBusquedaDirecta()">
+          Limpiar
+        </button>
+        <button id="btnVoz" type="button" class="copiar-btn voz-btn" onclick="iniciarBusquedaPorVozNativa()">
+          Voz
+        </button>
+      </div>
+
+      <div class="zoom-fila">
+        <span class="zoom-label">Vista:</span>
+        <button type="button" class="zoom-btn" onclick="cambiarZoom(-1)">A-</button>
+        <button type="button" class="zoom-btn" onclick="resetZoom()">100%</button>
+        <button type="button" class="zoom-btn" onclick="cambiarZoom(1)">A+</button>
+      </div>
+
+      <div id="contador" class="contador">Resultados encontrados: 0</div>
+      <div id="estadoApp" class="estado-app">Esperando archivo Excel...</div>
+    </div>
+
+    <div class="tabla-wrapper">
+      <div class="scroll-hint">Deslice horizontalmente para ver más columnas →</div>
+
+      <div class="tabla-contenedor">
+        <table id="tablaResultados">
+          <thead>
+            <tr>
+              <th class="col-codigo">Código</th>
+              <th class="col-producto">Producto</th>
+              <th class="col-bodega">Bodega</th>
+              <th class="col-num">Disponible</th>
+              <th class="col-num">L1</th>
+              <th class="col-num">L2</th>
+              <th class="col-num">L3</th>
+              <th class="col-accion">Acción</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyResultados">
+            <tr>
+              <td colspan="8" class="sin-datos">Cargue un archivo Excel para comenzar.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="xlsx.full.min.js"></script>
+  <script src="app.js"></script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js")
+          .then(() => console.log("Service Worker registrado"))
+          .catch(err => console.log("Error registrando Service Worker:", err));
+      });
+    }
+  </script>
+</body>
+</html>
